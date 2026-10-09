@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --panel-dark: #14213d;
+  --white: #ffffff;
+  --spark: #f2a93c;
+  --pulse: #4f7df3;
+  --paper-line: #e8eaf4;
+  --ink: #14213d;
+  --ink-soft: #6b7280;
+  --danger: #dc2626;
+
+  --radius-lg: 20px;
+  --radius-sm: 10px;
+
+  --font-display: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
+
+  /* Responsive spacing tokens — overridden at each breakpoint */
+  --page-px: 32px;
+  --page-py: 28px;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #f5f7fb;
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.25s;
+  /* Minimum tap target size for mobile */
+  min-height: 44px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ── Form elements ──────────────────────────────────────── */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #fff;
+  transition: 0.3s;
+  /* Prevent zoom on iOS when font-size < 16px */
+  font-size: max(16px, 1rem);
+}
+
+select {
+  min-height: 44px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4f7df3;
+  box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.15);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f7df3;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eceff6;
+}
+
+/* =========================================================
+   Responsive Design System — Mobile-First
+   ========================================================= */
+
+/* ── Page container ─────────────────────────────────────── */
+.responsive-page-container {
+  padding: var(--page-py) var(--page-px);
+  /* Extra bottom padding on mobile to clear the bottom nav */
+  padding-bottom: calc(var(--page-py) + env(safe-area-inset-bottom, 0px));
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ── Grids ──────────────────────────────────────────────── */
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 26px;
+}
+
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 26px;
+  margin-top: 32px;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+}
+
+.responsive-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.responsive-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Utility: flex row that wraps ───────────────────────── */
+.flex-row-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Utility: button group ──────────────────────────────── */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── Utility: full-width block select ───────────────────── */
+.select-full {
+  width: 100%;
+}
+
+/* ── Tables (always scrollable) ─────────────────────────── */
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Tablet  (≤ 1024 px)
+   ========================================================= */
+@media (max-width: 1024px) {
+  :root {
+    --page-px: 22px;
+    --page-py: 22px;
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .responsive-two-col {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* =========================================================
+   Mobile  (≤ 768 px)
+   ========================================================= */
+@media (max-width: 768px) {
+  :root {
+    --page-px: 14px;
+    --page-py: 18px;
+  }
+
+  /* Extra space so bottom nav bar doesn't cover content */
+  .responsive-page-container {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 12px));
+  }
+
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .responsive-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  /* Fluid heading sizes */
+  h1 {
+    font-size: clamp(18px, 5vw, 24px) !important;
+  }
+  h2 {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+  }
+  h3 {
+    font-size: clamp(14px, 4vw, 18px) !important;
+  }
+}
+
+/* =========================================================
+   Small phones  (≤ 480 px)
+   ========================================================= */
+@media (max-width: 480px) {
+  :root {
+    --page-px: 12px;
+    --page-py: 14px;
+  }
+
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group button,
+  .btn-group a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   Very small phones  (≤ 360 px)
+   ========================================================= */
+@media (max-width: 360px) {
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
